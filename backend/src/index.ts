@@ -1,13 +1,23 @@
-/* eslint-disabled */
-// @ts-nocheck
-import * as dotenv from 'dotenv';
+import dotenv from 'dotenv';
+import Fastify, {FastifyInstance, FastifyReply, FastifyRequest} from "fastify";
+import {FastifyMikroOrmPlugin} from "./plugins/mikro.js";
+import config from "./db/mikro-orm.config.js";
+
 dotenv.config();
-import {Nastify} from "./server.js";
 
+const app:FastifyInstance = Fastify();
 
-
-let app = Nastify();
-
-app.listen(8081, () =>{
-	console.log("Server listening on port 8081");
+await app.register(FastifyMikroOrmPlugin, config);
+app.get("/hello",async(req: FastifyRequest,rep: FastifyReply) => {
+  return "Hello";
 })
+
+app.listen({port:8081},
+  (err,address) => {
+  	if(err){
+		console.error(err);
+		process.exit(1);
+	}
+	  console.log(`Started server at ${address}`);
+  }
+  );
