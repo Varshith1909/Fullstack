@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import {TsMorphMetadataProvider} from "@mikro-orm/reflection";
 import {defineConfig} from "@mikro-orm/postgresql";
+import {User} from "./entities/User.js";
 
 export default defineConfig( {
   entities:["./entities/*.js"],
