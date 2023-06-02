@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "nodemon --no-warnings=ExperimentalWarning src/index.ts",
     "lint": "eslint . --ext .ts",
+    "test": "NODE_NO_WARNINGS=1 tap test/",
     "build": "tsc -p tsconfig.json",
     "start": "node build/index.js",
     "schema:update": "pnpm mikro-orm-esm schema:update --run --fk-checks"
@@ -14,6 +15,8 @@
   "license": "ISC",
   "scriptsComments": {
     "dev": "Runs watcher dev server, see https://github.com/nodejs/node/issues/30810#issuecomment-1446093458 for no-warnings",
+    "lint": "eslint . --ext .ts",
+    "test": "NODE_NO_WARNINGS=1 tap test/",
     "build": "Compiles typescript into javascript, then bundles our public files",
     "start": "Runs the compiled (build) version of our code rather than dev server",
     "schema:update": "RESETS the REAL database and updates its schema to match our entities code. DO NOT USE ME IN PRODUCTION!"
@@ -28,13 +31,18 @@
     "nodemon": "^2.0.22"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.0.2",
     "@mikro-orm/cli": "^5.6.15",
     "@swc/core": "^1.3.49",
+    "@types/chai": "^4.3.5",
     "@types/node": "^20.2.3",
+    "@types/tap": "^15.0.8",
     "@typescript-eslint/eslint-plugin": "^5.59.6",
     "@typescript-eslint/parser": "^5.59.6",
+    "chai": "^4.3.7",
     "eslint": "^8.41.0",
     "nodemon": "^2.0.22",
+    "tap": "^16.3.4",
     "ts-morph": "^17.0.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
@@ -45,5 +53,12 @@
       "./src/db/mikro-orm.config.js",
       "./build/db/mikro-orm.config.js"
     ]
+  },
+  "tap": {
+    "node-arg": [
+      "--loader=ts-node/esm"
+    ],
+    "coverage": false,
+    "ts": true
   }
 }

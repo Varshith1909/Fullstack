@@ -6,4 +6,7 @@ export class User extends BaseEntity {
   @Property()
   email!: string;
   
+  @Property()
+  name!: string;
+  
 }
