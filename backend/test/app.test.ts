@@ -6,8 +6,10 @@ import app from "../src/app.js";
 
 teardown(() => app.close());
 
+// Test case: Request the '/hello' route
 test("Rerquest the /hello route", async() => {
-  const res = await app.inject({
+	// Sending a GET request to '/hello' route using 'app.inject'
+	const res = await app.inject({
 	method:'GET',
 	url:'/hello'
   });
@@ -16,8 +18,10 @@ test("Rerquest the /hello route", async() => {
   res.body.should.equal("Hello");
 });
 
+// Test case: List all users from '/dbTest'
 test("List all users from /dbTest", async() => {
-  const res = await app.inject({
+	// Sending a GET request to '/dbTest' route using 'app.inject'
+	const res = await app.inject({
 	method:'GET',
 	url:'/dbTest'
   });
