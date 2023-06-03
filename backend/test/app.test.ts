@@ -23,4 +23,22 @@ test("List all users from /dbTest", async() => {
   });
   
   res.statusCode.should.equals(200);
-})
+});
+
+test("Cerating a new user", async() => {
+  const payload = {
+	name: "testname",
+	email: faker.internet.email()
+  };
+  
+  const res = await app.inject({
+	method:'POST',
+	url:'/users',
+	payload
+  });
+  
+  res.statusCode.should.equal(200);
+  res.payload.should.not.equal(payload);
+  const resPayload = res.json();
+  resPayload.email.should.equal(payload.email);
+});
