@@ -22,6 +22,9 @@ dependencies:
   fastify:
     specifier: ^4.17.0
     version: 4.17.0
+  fastify-plugin:
+    specifier: ^4.5.0
+    version: 4.5.0
   nodemon:
     specifier: ^2.0.22
     version: 2.0.22
@@ -1621,6 +1624,10 @@ packages:
 
   /fast-uri@2.2.0:
     resolution: {integrity: sha512-cIusKBIt/R/oI6z/1nyfe2FvGKVTohVRfvkOhvx0nCEW+xf5NoCXjAHcWp93uOUBchzYcsvPlrapAdX1uW+YGg==}
+    dev: false
+
+  /fastify-plugin@4.5.0:
+    resolution: {integrity: sha512-79ak0JxddO0utAXAQ5ccKhvs6vX2MGyHHMMsmZkBANrq3hXc1CHzvNPHOcvTsVMEPl5I+NT+RO4YKMGehOfSIg==}
     dev: false
 
   /fastify@4.17.0:

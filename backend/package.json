@@ -33,6 +33,7 @@
     "@mikro-orm/seeder": "^5.7.11",
     "dotenv": "^16.1.3",
     "fastify": "^4.17.0",
+    "fastify-plugin": "^4.5.0",
     "nodemon": "^2.0.22"
   },
   "devDependencies": {

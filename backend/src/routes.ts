@@ -14,9 +14,39 @@ async function Routes(app:FastifyInstance, _options = {}){
   app.get("/dbTest",async(req:FastifyRequest,rep:FastifyReply) => {
 	return req.em.find(User ,{});
   });
-  
 
-  
+  app.search("/users", async(req, reply)=>{
+	  const{email} =req.body;
+	  try {
+		  const theUser = await req.em.findOne(User, {email});
+		  console.log(theUser);
+		  reply.send(theUser);
+	  } catch(err){
+		  console.error(err);
+		  reply.status(500).send(err);
+	  }
+  })
+
+/*  app.route<{Body:{ email : string}}>({
+	  method: "SEARCH",
+	  url: "/users",
+
+	  handler:async(req,reply)=>{
+		  const{email} =req.body;
+			  try {
+				  const theUser = await req.em.findOne(User, {email});
+				  console.log(theUser);
+				  reply.send(theUser);
+			  } catch(err){
+				  console.error(err);
+				  reply.status(500).send(err);
+			  }
+
+	  }
+  });*/
+
+  //CRUD
+	// C
   app.post<{ Body: ICreateUserBody }>("/users", async (req,rep) => {
 	const {name,email}=req.body;
 	
@@ -36,6 +66,21 @@ async function Routes(app:FastifyInstance, _options = {}){
 	  return rep.status(500).send({messgae:err.message});
 	}
   });
+
+  //Read
+  app.search("/users", async(req, reply)=>{
+		const{email} =req.body;
+		try {
+			const theUser = await req.em.findOne(User, {email});
+			console.log(theUser);
+			reply.send(theUser);
+		} catch(err){
+			console.error(err);
+			reply.status(500).send(err);
+		}
+  })
+
+
 }
 
 export default Routes;
