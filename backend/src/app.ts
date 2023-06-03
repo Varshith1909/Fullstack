@@ -3,18 +3,15 @@ import Fastify, {FastifyInstance, FastifyReply, FastifyRequest} from "fastify";
 import {User} from "./db/entities/User.js";
 import {FastifyMikroOrmPlugin} from "./plugins/mikro.js";
 import config from "./db/mikro-orm.config.js";
+import Routes from "./routes.js";
 
 dotenv.config();
 
 const app:FastifyInstance = Fastify();
 
 await app.register(FastifyMikroOrmPlugin, config);
-app.get("/hello",async(req: FastifyRequest,rep: FastifyReply) => {
-  return "Hello";
-});
 
-app.get("/dbTest",async(req:FastifyRequest,rep:FastifyReply) => {
-  return req.em.find(User ,{});
-});
+await app.register(Routes);
+
 
 export default app;
