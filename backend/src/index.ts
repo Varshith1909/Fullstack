@@ -4,7 +4,7 @@ import app from "./app.js";
 dotenv.config();
 
 
-app.listen({port:8081},
+app.listen({port:Number(process.env.PORT)},
   (err,address) => {
   	if(err){
 		console.error(err);

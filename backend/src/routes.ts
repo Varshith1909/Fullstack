@@ -1,5 +1,4 @@
 import {FastifyInstance,FastifyRequest,FastifyReply} from "fastify";
-import app from './app.js'
 import {User} from "./db/entities/User.js";
 import {ICreateUserBody} from "./types.js";
 
@@ -78,9 +77,35 @@ async function Routes(app:FastifyInstance, _options = {}){
 			console.error(err);
 			reply.status(500).send(err);
 		}
+  });
+  
+  //UPDATE
+  
+  app.put<{Body:ICreateUserBody}>("/users", async(req,rep) => {
+	const {name,email} = req.body;
+	
+	const userToChange = await req.em.findOne(User,{email});
+	userToChange.name=name;
+	
+	await req.em.flush();
+	console.log(userToChange);
+	rep.send(userToChange);
+  });
+
+
+  //DELETE
+  app.delete<{Body:ICreateUserBody}>("/user", async(req,rep) =>{
+	const{email} =req.body;
+	try {
+	  const theUser = await req.em.findOne(User, {email});
+	  await req.em.remove(theUser).flush();
+	  console.log(theUser);
+	  rep.send(theUser);
+	} catch(err){
+	  console.error(err);
+	  rep.status(500).send(err);
+	}
   })
-
-
 }
 
 export default Routes;
