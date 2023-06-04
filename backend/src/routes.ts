@@ -15,7 +15,7 @@ async function Routes(app:FastifyInstance, _options = {}){
 	return req.em.find(User ,{});
   });
 
-  app.search("/users", async(req, reply)=>{
+  app.search("/user", async(req, reply)=>{
 	  const{email} =req.body;
 	  try {
 		  const theUser = await req.em.findOne(User, {email});

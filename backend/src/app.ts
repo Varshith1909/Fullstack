@@ -4,7 +4,7 @@ import {User} from "./db/entities/User.js";
 import {FastifyMikroOrmPlugin} from "./plugins/mikro.js";
 import config from "./db/mikro-orm.config.js";
 import Routes from "./routes.js";
-import {FastifySearchHttpMethodPlugin} from "./plugins/http_search";
+import {FastifySearchHttpMethodPlugin} from "./plugins/http_search.js";
 
 dotenv.config();
 
