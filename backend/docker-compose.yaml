@@ -12,6 +12,24 @@ services:
       - POSTGRES_USER=doggr
       - POSTGRES_PASSWORD=doggr
       - POSTGRES_DB=doggr
+  backend:
+    container_name: backend
+    build: ./backend/
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=doggr
+      - DB_USER=doggr
+      - DB_PASS=doggr
+      - PORT=8081
+      - HOST=0.0.0.0
+    depends_on:
+      - postgres
+
+
 
 volumes:
   db:
