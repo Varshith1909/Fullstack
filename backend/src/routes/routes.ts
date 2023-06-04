@@ -1,6 +1,6 @@
 import {FastifyInstance,FastifyRequest,FastifyReply} from "fastify";
-import {User} from "./db/entities/User.js";
-import {ICreateUserBody} from "./types.js";
+import {User} from "../db/entities/User.js";
+import {ICreateUserBody} from "../types.js";
 
 async function Routes(app:FastifyInstance, _options = {}){
   if(!app){
@@ -25,24 +25,7 @@ async function Routes(app:FastifyInstance, _options = {}){
 		  reply.status(500).send(err);
 	  }
   })
-
-/*  app.route<{Body:{ email : string}}>({
-	  method: "SEARCH",
-	  url: "/users",
-
-	  handler:async(req,reply)=>{
-		  const{email} =req.body;
-			  try {
-				  const theUser = await req.em.findOne(User, {email});
-				  console.log(theUser);
-				  reply.send(theUser);
-			  } catch(err){
-				  console.error(err);
-				  reply.status(500).send(err);
-			  }
-
-	  }
-  });*/
+  
 
   //CRUD
 	// C

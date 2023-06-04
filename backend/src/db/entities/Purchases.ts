@@ -1,17 +1,18 @@
-import { Entity, Property } from "@mikro-orm/core";
+import { Entity, Property, ManyToOne } from "@mikro-orm/core";
 import { BaseEntity } from "./BaseEntity.js";
+import { Categories } from "./Categories.js";
+import { Suppliers } from "./Suppliers.js";
 
 @Entity()
-export class Purchase extends BaseEntity {
+export class Purchases extends BaseEntity {
   @Property()
   product!: string;
   
-  // Assuming the relationships with Category and Supplier entities
-  @Property()
-  category_id!: number;
+  @ManyToOne(() => Categories)
+  category!: Categories;
   
-  @Property()
-  supplier_id!: number;
+  @ManyToOne(() => Suppliers)
+  supplier!: Suppliers;
   
   @Property()
   cost_price!: number;

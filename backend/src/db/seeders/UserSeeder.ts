@@ -9,6 +9,21 @@ export class UserSeeder extends Seeder {
       name:'xyz',
       email:'med1@email.com'
     });
+    
+    em.create(User, {
+      name:'abc',
+      email:'meda@email.com'
+    });
+    
+    em.create(User, {
+      name:'efg',
+      email:'mede@email.com'
+    });
+    
+    em.create(User, {
+      name:'yuw',
+      email:'medy@email.com'
+    });
   }
 
 }
