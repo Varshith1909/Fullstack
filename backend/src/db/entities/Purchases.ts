@@ -5,33 +5,33 @@ import { Suppliers } from "./Suppliers.js";
 
 @Entity()
 export class Purchases extends BaseEntity {
-  @Property()
-  product!: string;
-  
-  @ManyToOne(() => Categories)
-  category!: Categories;
-  
-  @ManyToOne(() => Suppliers)
-  supplier!: Suppliers;
-  
-  @Property()
-  cost_price!: number;
-  
-  @Property()
-  quantity!: number;
-  
-  @Property()
-  expiry_date!: Date;
-  
-  @Property()
-  updated_at = new Date();
-  
-  @Property()
-  deleted_at: Date | null = null;
-  
-  @Property()
-  created_at = new Date();
-  
-  @Property()
-  position!: string;
+	@Property()
+	product!: string;
+
+	@ManyToOne(() => Categories)
+	category!: Categories;
+
+	@ManyToOne(() => Suppliers)
+	supplier!: Suppliers;
+
+	@Property()
+	cost_price!: number;
+
+	@Property()
+	quantity!: number;
+
+	@Property()
+	expiry_date!: Date;
+
+	@Property()
+	updated_at = new Date();
+
+	@Property()
+	deleted_at: Date | null = null;
+
+	@Property()
+	created_at = new Date();
+
+	@Property()
+	position!: string;
 }

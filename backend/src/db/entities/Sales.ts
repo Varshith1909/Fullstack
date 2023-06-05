@@ -4,12 +4,12 @@ import { Products } from "./Products.js";
 
 @Entity()
 export class Sales extends BaseEntity {
-  @ManyToOne(() => Products)
-  product!: Products;
-  
-  @Property()
-  quantity!: number;
-  
-  @Property()
-  total_price!: number;
+	@ManyToOne(() => Products)
+	product!: Products;
+
+	@Property()
+	quantity!: number;
+
+	@Property()
+	total_price!: number;
 }
