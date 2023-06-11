@@ -11,27 +11,36 @@ export const Header = () => {
   );
 };
 
-
 export const Button = () => {
   const [clicks, setClicks] = useState(2);
   const [users, setUsers] = useState([]);
   
   useEffect(() => {
-    const getUser = async () => {
-      const userResult = await axios.get("http://localhost:8082/hello");
-      setUsers(userResult.data);
+    const fetchProducts = async () => {
+      try {
+        console.log("Fetching products...");
+        const response = await axios.get("http://localhost:8082/products");
+        console.log("Response:", response);
+        setUsers(response.data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
     };
-   void getUser();
-  }, []);
+    
+    console.log("useEffect triggered with clicks:", clicks);
+    void fetchProducts();
+  }, [clicks]);
+  
+  console.log("Rendering Button component with users:", users);
   
   return (
-    
-    <button onClick={() => {
-      console.log("Clicked!");
-      setClicks(clicks + 1);
-    }}>
+    <button
+      onClick={() => {
+        console.log("Clicked!");
+        setClicks(clicks + 1);
+      }}
+    >
       Clicks: {clicks}
-   
     </button>
   );
 };
