@@ -12,26 +12,10 @@ export const Header = () => {
 };
 
 export const Button = () => {
-  const [clicks, setClicks] = useState(2);
-  const [users, setUsers] = useState([]);
+  const [clicks, setClicks] = useState(0);
   
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        console.log("Fetching products...");
-        const response = await axios.get("http://localhost:8082/products");
-        console.log("Response:", response);
-        setUsers(response.data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-    
-    console.log("useEffect triggered with clicks:", clicks);
-    void fetchProducts();
-  }, [clicks]);
   
-  console.log("Rendering Button component with users:", users);
+  
   
   return (
     <button
@@ -44,3 +28,31 @@ export const Button = () => {
     </button>
   );
 };
+
+
+
+export const ProductList = () => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const productRes = await axios.get("http://localhost:8082/products");
+      return productRes.data;
+    };
+    fetchProducts().then( setUsers);
+  }, []);
+  
+  return (
+    <div>
+      <h2>Products</h2>
+      {
+        users ?
+          <ul>
+            {users.map((user : {name:string, price:number, description:string}) =>
+            <li key ={user.name}>{user.name} - {user.price} - {user.description} </li>)
+            }
+          </ul> : null
+      }
+    </div>
+  );
+}
