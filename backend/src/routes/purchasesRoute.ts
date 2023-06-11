@@ -16,6 +16,8 @@ async function purchasesRoutes(app: FastifyInstance, _options = {}) {
 			rep.status(500).send(err);
 		}
 	});
+	
+	
 }
 
 export default purchasesRoutes;

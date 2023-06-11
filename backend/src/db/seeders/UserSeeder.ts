@@ -6,7 +6,7 @@ export class UserSeeder extends Seeder {
 	async run(em: EntityManager): Promise<void> {
 		em.create(User, {
 			name: "xyz",
-			email: "med1@email.com",
+			email: "med2@email.com",
 		});
 
 		em.create(User, {
