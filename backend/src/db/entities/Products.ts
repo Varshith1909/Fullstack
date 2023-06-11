@@ -6,10 +6,6 @@ import { Categories } from "./Categories.js";
 export class Products extends BaseEntity {
 	@Property()
 	name!: string;
-
-	@ManyToOne(() => Categories)
-	category!: Categories;
-
 	@Property()
 	price!: number;
 
