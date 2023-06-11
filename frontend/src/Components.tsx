@@ -13,23 +13,25 @@ export const Header = () => {
 
 
 export const Button = () => {
-  const [clicks, setClicks] = useState(0);
+  const [clicks, setClicks] = useState(2);
   const [users, setUsers] = useState([]);
   
   useEffect(() => {
     const getUser = async () => {
-      const userResult = await axios.get("http://localhost:8082/user");
+      const userResult = await axios.get("http://localhost:8082/hello");
       setUsers(userResult.data);
     };
-    getUser();
+   void getUser();
   }, []);
   
   return (
+    
     <button onClick={() => {
       console.log("Clicked!");
       setClicks(clicks + 1);
     }}>
       Clicks: {clicks}
+   
     </button>
   );
 };

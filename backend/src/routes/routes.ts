@@ -7,7 +7,7 @@ async function Routes(app: FastifyInstance, _options = {}) {
 		throw new Error("Fastify instance has no value during routes cons");
 	}
 	app.get("/hello", async (req: FastifyRequest, rep: FastifyReply) => {
-		return "Hello";
+		return console.log("Hello");
 	});
 
 	app.get("/dbTest", async (req: FastifyRequest, rep: FastifyReply) => {

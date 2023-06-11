@@ -37,12 +37,13 @@
 		"schema:update": "RESETS the REAL database and updates its schema to match our entities code. DO NOT USE ME IN PRODUCTION!"
 	},
 	"dependencies": {
+		"@fastify/cors": "^8.3.0",
 		"@mikro-orm/cli": "^5.7.11",
 		"@mikro-orm/core": "^5.7.11",
 		"@mikro-orm/postgresql": "^5.7.11",
 		"@mikro-orm/reflection": "5.7.11",
 		"@mikro-orm/seeder": "^5.7.11",
-		"axios" : "^1.4.0",
+		"axios": "^1.4.0",
 		"dotenv": "^16.1.3",
 		"fastify": "^4.17.0",
 		"fastify-plugin": "^4.5.0",

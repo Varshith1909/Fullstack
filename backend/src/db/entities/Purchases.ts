@@ -5,11 +5,10 @@ import { Suppliers } from "./Suppliers.js";
 
 @Entity()
 export class Purchases extends BaseEntity {
+
 	@Property()
 	product!: string;
-
-	@ManyToOne(() => Categories)
-	category!: Categories;
+	
 
 	@ManyToOne(() => Suppliers)
 	supplier!: Suppliers;

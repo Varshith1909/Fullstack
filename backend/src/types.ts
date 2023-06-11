@@ -11,12 +11,12 @@ export type ICreateSupplierBody = {
 	product: string;
 };
 export interface ICreateCategoryBody {
+	Id: number;
 	name: string;
 }
 
 export interface ICreatePurchaseBody {
 	product: string;
-	category_id: number;
 	supplier_id: number;
 	cost_price: number;
 	quantity: number;
@@ -26,7 +26,6 @@ export interface ICreatePurchaseBody {
 
 export interface ICreateProductBody {
 	name: string;
-	categoryId: number;
 	price: number;
 	discount: number;
 	description: string;
