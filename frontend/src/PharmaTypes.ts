@@ -7,6 +7,7 @@ export type State = {
 
 export type ProductType = {
   imageUri:string,
+  postion:number,
   price:number,
   name:string,
   id:number,
