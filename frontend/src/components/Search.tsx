@@ -1,3 +1,5 @@
+import {Products} from "@/components/Products.tsx";
+
 export const Search=()=>{
     return(
         <>
