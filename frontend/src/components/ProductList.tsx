@@ -44,7 +44,7 @@ export const ProductList = () => {
                 <ul>
                     {filteredUsers.map((user) => (
                         <li key={user.name}>
-                            {user.name} - {user.price} - {user.description}
+                            {user.name} - {user.price - user.discount} - {user.description}
                         </li>
                     ))}
                 </ul>
