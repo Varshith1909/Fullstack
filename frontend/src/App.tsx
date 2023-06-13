@@ -1,3 +1,4 @@
+import LoginButton from "@/loginButton.tsx";
 import { useState } from 'react'
 import reactLogo from '@images/react.svg'
 import viteLogo from '/vite.svg'
@@ -6,9 +7,11 @@ import {Header} from "@/components/Homepage.tsx";
 import { Link, Route, Routes, Router, BrowserRouter } from "react-router-dom";
 import {ProductList} from "@/components/ProductList.tsx";
 import AddProduct  from '@/components/PurchaseList.tsx';
+import loginButton  from "@/loginButton.tsx";
 
 export function App() {
 return(
+  
   <BrowserRouter>
   <div className="App">
     <nav>
@@ -23,6 +26,7 @@ return(
       <Route path='/products' element={<ProductList />} />
       <Route path="/api/product" element={<AddProduct />} />
     </Routes>
+    <LoginButton />
     
   </div>
   </BrowserRouter>
