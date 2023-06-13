@@ -1,4 +1,5 @@
 import LoginButton from "@/loginButton.tsx";
+import LogoutButton from "@/logoutButton.tsx";
 import { useState } from 'react'
 import reactLogo from '@images/react.svg'
 import viteLogo from '/vite.svg'
@@ -8,6 +9,7 @@ import { Link, Route, Routes, Router, BrowserRouter } from "react-router-dom";
 import {ProductList} from "@/components/ProductList.tsx";
 import AddProduct  from '@/components/PurchaseList.tsx';
 import loginButton  from "@/loginButton.tsx";
+import logoutButton from "@/logoutButton.tsx";
 
 export function App() {
 return(
@@ -27,6 +29,7 @@ return(
       <Route path="/api/product" element={<AddProduct />} />
     </Routes>
     <LoginButton />
+    <LogoutButton />
     
   </div>
   </BrowserRouter>
