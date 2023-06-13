@@ -17,4 +17,13 @@ export class Products extends BaseEntity {
 
 	@Property()
 	productId!: number;
+	
+	@Property({nullable: true})
+	expiry_date?: Date;
+	
+	@Property()
+	position!: string;
+	
+	@Property()
+	Manifacture_date = new Date();
 }

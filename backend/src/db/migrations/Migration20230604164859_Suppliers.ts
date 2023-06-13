@@ -10,8 +10,6 @@ export class Migration20230604164859_Suppliers extends Migration {
 
 		this.addSql('alter table "suppliers" alter column "id" type int using ("id"::int);');
 
-		this.addSql('alter table "purchases" alter column "id" type int using ("id"::int);');
-
 		this.addSql('alter table "user" alter column "id" type int using ("id"::int);');
 	}
 
@@ -23,8 +21,6 @@ export class Migration20230604164859_Suppliers extends Migration {
 		this.addSql('alter table "sales" alter column "id" type int using ("id"::int);');
 
 		this.addSql('alter table "suppliers" alter column "id" type int using ("id"::int);');
-
-		this.addSql('alter table "purchases" alter column "id" type int using ("id"::int);');
 
 		this.addSql('alter table "user" alter column "id" type int using ("id"::int);');
 	}
