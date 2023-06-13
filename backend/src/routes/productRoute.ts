@@ -18,7 +18,7 @@ async function productsRoutes(app: FastifyInstance, _options = {}) {
 	});
 
 	app.post<{ Body: ICreateProductBody }>("/products", async (req, rep) => {
-		const { name, price, discount, description, productId } = req.body;
+		const { name, price, discount, description,position,expiry_date, productId } = req.body;
 
 		try {
 			const newProduct = await req.em.create(Products, {
@@ -26,6 +26,8 @@ async function productsRoutes(app: FastifyInstance, _options = {}) {
 				price,
 				discount,
 				description,
+				position,
+				expiry_date,
 				productId,
 			});
 

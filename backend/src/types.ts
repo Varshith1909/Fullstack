@@ -29,6 +29,8 @@ export interface ICreateProductBody {
 	price: number;
 	discount: number;
 	description: string;
+	position:string;
+	expiry_date: Date;
 	productId: number;
 }
 export interface ICreateSaleBody {
