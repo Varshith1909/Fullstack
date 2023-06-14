@@ -1,3 +1,6 @@
+import LoginButton from "@/loginButton.tsx";
+import LogoutButton from "@/logoutButton.tsx";
+import {useAuth0} from "@auth0/auth0-react";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -5,6 +8,7 @@ export const ProductList = () => {
     const [users, setUsers] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
     const [filteredUsers, setFilteredUsers] = useState([]);
+    const { isAuthenticated } = useAuth0();
 
     const fetchProducts = async () => {
         const productRes = await axios.get("http://localhost:8082/products");
@@ -31,26 +35,42 @@ export const ProductList = () => {
 
     return (
         <div>
-            <h2>Products</h2>
-            <div>
-                <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                />
-                <button onClick={handleSearch}>Search</button>
-            </div>
-            {filteredUsers.length > 0 ? (
-                <ul>
-                    {filteredUsers.map((user) => (
-                        <li key={user.name}>
-                            {user.name} - {user.price - user.discount} - {user.description}
-                        </li>
-                    ))}
-                </ul>
-            ) : (
-                <p>No products found.</p>
+            {isAuthenticated && (
+              <>
+                  
+                  <h2>Products</h2>
+                  <div>
+                      <input
+                        type="text"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                      />
+                      <button onClick={handleSearch}>Search</button>
+                  </div>
+                  {filteredUsers.length > 0 ? (
+                    <ul>
+                        {filteredUsers.map((user) => (
+                          <li key={user.name}>
+                              {user.name} - {user.price - user.discount} - {user.description}
+                          </li>
+                        ))}
+                    </ul>
+                  ) : (
+                    <p>No products found.</p>
+                  )}
+              </>
             )}
+            {!isAuthenticated &&
+            
+            <div>
+                
+                <h1> Login to see</h1>
+            </div>
+            
+            }
+            
+            
         </div>
+        
     );
 };
