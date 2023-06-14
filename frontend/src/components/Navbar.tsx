@@ -8,6 +8,8 @@ import { Link, Route, Routes } from 'react-router-dom';
 import 'daisyui/dist/full.css';
 import "../assets/css/navbar.css"
 import { useAuth0 } from '@auth0/auth0-react';
+import '../assets/css/navbar.css';
+
 
 
 export function NavBar() {
@@ -25,7 +27,7 @@ export function NavBar() {
               <li><a>Item 3</a></li>
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-2xl">daisyUI</a> {/* Apply text-2xl class for larger text */}
+          <a className="btn btn-ghost normal-case"><Link to="/" className="text-lg">pharmacy management</Link> </a> {/* Apply text-2xl class for larger text */}
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
