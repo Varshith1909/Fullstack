@@ -14,6 +14,7 @@ export function getRandomProduct(): ProductType{
     imageUri: `https://loremflickr.com/300/300/drug=${idNum}`,
     name: "Medicine",
     price: 50,
+    position: 'Rack 1',
     id:idNum
   }
 }

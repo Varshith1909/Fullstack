@@ -24,5 +24,18 @@ export default defineConfig(({ command, mode }) => {
     },
     // vite config
     define,
+    server: {
+      watch: {
+        usePolling: true,
+      },
+      host: true,
+      strictPort: true,
+      port: 5172,
+    },
+    build: {
+      target: "esnext",
+      emptyOutDir: true,
+      outDir: "build"
+    }
   }
 })
