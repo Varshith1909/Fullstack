@@ -43,7 +43,7 @@ await app.register(cors, {
 	origin: (origin, cb) => {
 		cb(null, true);
 	},
-	//methods: ['GET','POST','PUT','DELETE','PATCH','SEARCH'],
+	methods: ['GET','POST','PUT','DELETE','PATCH','SEARCH'],
 });
 
 

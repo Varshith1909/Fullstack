@@ -4,6 +4,7 @@ import { expect, test } from 'vitest';
 import {render, fireEvent, screen} from '@testing-library/react'
 import App from "../src/App.js"
 
+
 test("Math.sqrt()", () => {
   expect(Math.sqrt(4)).toBe(2);
   expect(Math.sqrt(144)).toBe(12);
@@ -19,3 +20,4 @@ describe("Renders React components correctly" , async()=> {
     //expect(h1).toBeVisible();
   })
 })
+

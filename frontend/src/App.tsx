@@ -1,3 +1,4 @@
+import { NavBar } from "@/components/Navbar.tsx";
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
@@ -16,12 +17,7 @@ export function App() {
        
         {isAuthenticated && (
           <>
-            <nav>
-              <div className="menu">
-                <Link to="/">Home</Link> || <Link to="/products">Search</Link> ||{' '}
-                <Link to="/api/product">Purchases</Link>
-              </div>
-            </nav>
+            <NavBar />
             <Routes>
               <Route path="/" element={<Header />} />
               <Route path="/products" element={<ProductList />} />
