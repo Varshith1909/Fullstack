@@ -14,15 +14,11 @@ export function App() {
   return (
     <BrowserRouter>
       <div className="App">
-       
+        <NavBar />
         {isAuthenticated && (
           <>
-            <NavBar />
-            <Routes>
-              <Route path="/" element={<Header />} />
-              <Route path="/products" element={<ProductList />} />
-              <Route path="/api/product" element={<AddProduct />} />
-            </Routes>
+           
+            
             <LogoutButton />
           </>
         )}
