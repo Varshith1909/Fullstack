@@ -2,7 +2,10 @@ module.exports = {
   future: {
     // removeDeprecatedGapUtilities: true,
     // purgeLayersByDefault: true,
-    plugins: [require("daisyui")],
+    plugins: [require("daisyui"),
+      require('tailwindcss'),
+      require('autoprefixer')],
+
   },
   purge: [],
   theme: {

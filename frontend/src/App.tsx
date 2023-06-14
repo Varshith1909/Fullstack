@@ -15,14 +15,7 @@ export function App() {
     <BrowserRouter>
       <div className="App">
         <NavBar />
-        {isAuthenticated && (
-          <>
-           
-            
-            <LogoutButton />
-          </>
-        )}
-        {!isAuthenticated && <LoginButton />}
+        
       </div>
     </BrowserRouter>
   );

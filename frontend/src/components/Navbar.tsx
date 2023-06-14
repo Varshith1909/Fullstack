@@ -1,15 +1,20 @@
 import { Header } from "@/components/Homepage.tsx";
 import { ProductList } from "@/components/ProductList.tsx";
 import AddProduct from "@/components/PurchaseList.tsx";
+import LoginButton from "@/loginButton.tsx";
+import LogoutButton from "@/logoutButton.tsx";
 import React from "react";
 import { Link, Route, Routes } from 'react-router-dom';
 import 'daisyui/dist/full.css';
+import "../assets/css/navbar.css"
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 export function NavBar() {
+  const { isAuthenticated } = useAuth0();
   return (
     <nav>
-      <div className="navbar bg-base-200 navbar-l bg-slate-100"> {/* Apply navbar-lg class for larger navbar */}
+      <div className="navbar bg-base-800 navbar-lg"> {/* Apply navbar-lg class for larger navbar */}
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -17,13 +22,6 @@ export function NavBar() {
             </label>
             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
               <li><a><Link to="/" className="text-lg">Home</Link></a></li> {/* Apply text-lg class for larger text */}
-              <li>
-                <a>Parent</a>
-                <ul className="p-2">
-                  <li><a>Submenu 1</a></li>
-                  <li><a>Submenu 2</a></li>
-                </ul>
-              </li>
               <li><a>Item 3</a></li>
             </ul>
           </div>
@@ -34,14 +32,21 @@ export function NavBar() {
             <li><a><Link to="/" className="text-lg">Home</Link></a></li> {/* Apply text-lg class for larger text */}
             <li>
               <a>
-                <Link to="/api/product" className="text-l">Purchases</Link> {/* Apply text-lg class for larger text */}
+                <Link to="/api/product" className="text-lg">Purchases</Link> {/* Apply text-lg class for larger text */}
               </a>
             </li>
-            <li><a><Link to="/products" className="text-2xl">Search</Link></a></li> {/* Apply text-lg class for larger text */}
+            <li><a><Link to="/products" className="text-lg">Search</Link></a></li> {/* Apply text-lg class for larger text */}
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          {isAuthenticated && (
+            <>
+              
+              <LogoutButton />
+            </>
+          )}
+          {!isAuthenticated && <LoginButton />}
+          
         </div>
       </div>
       <Routes>
@@ -49,10 +54,7 @@ export function NavBar() {
         <Route path="/products" element={<ProductList />} />
         <Route path="/api/product" element={<AddProduct />} />
       </Routes>
-      <div className="menu">
-        <Link to="/" className="text-lg">Home</Link> || <Link to="/products" className="text-lg">Search</Link> ||{' '}
-        <Link to="/api/product" className="text-lg">Purchases</Link>
-      </div>
     </nav>
   );
 }
+
