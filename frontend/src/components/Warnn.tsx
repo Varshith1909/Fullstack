@@ -8,7 +8,7 @@ const WarningComponent = () => {
 		<div className="warning">
 			<h3 >Warning: Login Required</h3>
 			<p >You need to log in to view this content.</p>
-			<p >Please lgoin to access the page.</p>
+			<p >Please login to access the page.</p>
 		</div>
 	);
 };
