@@ -1,3 +1,4 @@
+import {useAuth0} from "@auth0/auth0-react";
 import React, { useState } from "react";
 import axios from "axios";
 
@@ -8,8 +9,11 @@ const AddProduct = () => {
     const [description, setDescription] = useState("");
     const [position, setPosition] = useState("");
     const [expiry_date, setExpiryDate] = useState("");
+    const { isAuthenticated } = useAuth0();
     
     const handleAddProduct = async (e) => {
+   
+        
         e.preventDefault();
         
         try {
@@ -41,7 +45,10 @@ const AddProduct = () => {
     
     return (
       <div>
-          <h2>Add Product</h2>
+          {isAuthenticated && (
+            <>
+            
+            <h2>Add Product</h2>
           <form onSubmit={handleAddProduct}>
               <label htmlFor="name">Name:</label>
               <input
@@ -99,6 +106,16 @@ const AddProduct = () => {
               
               <button type="submit">Add Product</button>
           </form>
+      </>
+    )}
+{!isAuthenticated &&
+
+<div>
+    
+    <h1> Login to see</h1>
+</div>
+
+}
       </div>
     );
 };

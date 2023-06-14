@@ -1,0 +1,45 @@
+
+.header-container {
+    background-image: url('https://images.unsplash.com/photo-1655313719493-16ebe4906441?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+
+}
+
+.header-container {
+    position: absolute;
+    left: 20rem;
+    bottom: 10rem;
+    width :37rem;
+
+}
+
+.header-container p{
+    font-size: 25px;
+    position: absolute;
+    top: 28rem;
+    right: 4rem;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+
+
+.header-container h3 {
+    font-size: 30px;
+    font-family: 'Barlow Condensed', sans-serif;
+    position: absolute;
+    left: 5rem;
+}
+
+
