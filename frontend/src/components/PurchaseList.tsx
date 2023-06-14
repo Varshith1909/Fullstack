@@ -2,7 +2,7 @@ import WarningComponent from "@/components/Warnn.tsx";
 import { useAuth0 } from "@auth0/auth0-react";
 import React, { useState } from "react";
 import axios from "axios";
-import "./AddProduct.css";
+import "../assets/css/purchaselist.css"
 
 const AddProduct = () => {
     const [name, setName] = useState("");
@@ -47,7 +47,7 @@ const AddProduct = () => {
       <div>
           {isAuthenticated && (
             <>
-                <h2>Add Product</h2>
+                
                 <form className="add-product-form" onSubmit={handleAddProduct}>
                     <label htmlFor="name">Name:</label>
                     <input

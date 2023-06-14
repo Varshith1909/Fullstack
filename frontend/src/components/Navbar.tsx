@@ -1,5 +1,5 @@
 import { Header } from "@/components/Homepage.tsx";
-import { ProductList } from "@/components/ProductList.tsx";
+import ProductList from "@/components/ProductList.tsx";
 import AddProduct from "@/components/PurchaseList.tsx";
 import LoginButton from "@/loginButton.tsx";
 import LogoutButton from "@/logoutButton.tsx";
