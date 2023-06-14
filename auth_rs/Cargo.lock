@@ -84,6 +84,7 @@ dependencies = [
  "dotenvy",
  "futures",
  "jsonwebtoken",
+ "openssl",
  "r2d2",
  "reqwest",
  "serde",
