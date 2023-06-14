@@ -3,6 +3,7 @@ import LogoutButton from "@/logoutButton.tsx";
 import {useAuth0} from "@auth0/auth0-react";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import WarningComponent  from "./Warnn.tsx"
 
 export const ProductList = () => {
     const [users, setUsers] = useState([]);
@@ -64,7 +65,7 @@ export const ProductList = () => {
             
             <div>
                 
-                <h1> Login to see</h1>
+               <WarningComponent />
             </div>
             
             }
