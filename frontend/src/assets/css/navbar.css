@@ -7,7 +7,7 @@
     margin-right: 55px;
 }
 .navbar {
-    background-color: #354f52; /* Replace with your desired background color */
+    background-color: #354f52;
     font-size: 23px;
    font-family: 'Nanum Myeongjo', serif;
 
@@ -15,12 +15,9 @@
 
 
 .navbar-start {
-    font-size: 18px;/* Add your custom styles here */
+    font-size: 18px;
 }
 
-.dropdown {
-    /* Add your custom styles here */
-}
 .text-lg{
     font-size: 23px;
 

@@ -3,8 +3,8 @@
     background-position: center;
     height: 100vh;
     display: flex;
-    flex-direction: row-reverse; /* Align the image to the right */
-    justify-content: space-between; /* Add space between image and text */
+    flex-direction: row-reverse;
+    justify-content: space-between;
     align-items: center;
     text-align: left;
     color: white;

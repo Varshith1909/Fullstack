@@ -28,9 +28,6 @@ const AddProduct = () => {
             });
             
             console.log("Product added:", response.data);
-            // Perform any additional actions after adding the product
-            
-            // Clear the input fields after successful product addition
             setName("");
             setPrice(0);
             setDiscount(0);
@@ -39,7 +36,6 @@ const AddProduct = () => {
             setExpiryDate("");
         } catch (error) {
             console.error("Failed to add product:", error);
-            // Handle error scenarios
         }
     };
     

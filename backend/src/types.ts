@@ -4,11 +4,13 @@ export type ICreateUserBody = {
 };
 
 export type ICreateSupplierBody = {
+	supplier_id: number;
 	name: string;
 	email: string;
 	compName: string;
 	addr: string;
 	product: string;
+	comp_Name: string;
 };
 export interface ICreateCategoryBody {
 	Id: number;
@@ -34,7 +36,7 @@ export interface ICreateProductBody {
 	productId: number;
 }
 export interface ICreateSaleBody {
-	product_id: number;
+	productId: number;
 	quantity: number;
 	total_price: number;
 }
