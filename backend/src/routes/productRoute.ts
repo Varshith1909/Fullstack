@@ -3,43 +3,57 @@ import { Products } from "../db/entities/Products.js";
 import { ICreateProductBody } from "../types.js";
 
 async function productsRoutes(app: FastifyInstance, _options = {}) {
-	if (!app) {
-		throw new Error("Fastify instance has no value during routes construction");
-	}
+    // GET method to Retrieve the list of all products
+    app.get("/products", async (req: FastifyRequest, rep: FastifyReply) => {
+        try {
+            const products = await req.em.find(Products, {});
+            return products;
+        } catch (err) {
+            req.log.error(err, "Failed to retrieve products");
+            return rep.status(500).send({ message: "Internal Server Error" });
+        }
+    });
 
-	app.get("/products", async (req: FastifyRequest, rep: FastifyReply) => {
-		try {
-			const products = await req.em.find(Products, {});
-			return products;
-		} catch (err) {
-			console.error(err);
-			rep.status(500).send(err);
-		}
-	});
+    // POST method to Create and add a new product
+    app.post<{ Body: ICreateProductBody }>("/products", {
+        schema: {
+            body: {
+                type: 'object',
+                required: ['name', 'price', 'discount', 'description', 'position', 'expiry_date', 'productId'],
+                properties: {
+                    name: { type: 'string' },
+                    price: { type: 'number' },
+                    discount: { type: 'number' },
+                    description: { type: 'string' },
+                    position: { type: 'string' },
+                    expiry_date: { type: 'string', format: 'date-time' },
+                    productId: { type: 'number' },
+                },
+            },
+        },
+        handler: async (req, rep) => {
+            const { name, price, discount, description, position, expiry_date, productId } = req.body;
 
-	app.post<{ Body: ICreateProductBody }>("/products", async (req, rep) => {
-		const { name, price, discount, description,position,expiry_date, productId } = req.body;
+            try {
+                const newProduct = req.em.create(Products, {
+                    name,
+                    price,
+                    discount,
+                    description,
+                    position,
+                    expiry_date,
+                    productId,
+                });
 
-		try {
-			const newProduct = await req.em.create(Products, {
-				name,
-				price,
-				discount,
-				description,
-				position,
-				expiry_date,
-				productId,
-			});
-
-			await req.em.flush();
-
-			console.log("Created Product", newProduct);
-			return rep.send(newProduct);
-		} catch (err) {
-			console.log("Failed to create new product", err.message);
-			return rep.status(500).send({ message: err.message });
-		}
-	});
+                await req.em.persistAndFlush(newProduct);
+                req.log.info("Created Product", newProduct);
+                return rep.status(201).send(newProduct);
+            } catch (err) {
+                req.log.error(err, "Failed to create a new product");
+                return rep.status(500).send({ message: "Internal Server Error" });
+            }
+        }
+    });
 }
 
 export default productsRoutes;
