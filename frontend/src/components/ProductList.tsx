@@ -1,66 +1,68 @@
-import LoginButton from "@/loginButton.tsx";
-import LogoutButton from "@/logoutButton.tsx";
-import { useAuth0 } from "@auth0/auth0-react";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import ProductItem from "./ProductItem"; // Component for rendering each product
 import WarningComponent from "./Warnn.tsx";
-import "../assets/css/ProductsLiat.css";
-import image from '@/assets/images/pharma.jpeg';
+import "../assets/css/ProductsLiat.css"; // Corrected CSS file name
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const ProductList = () => {
-    const [users, setUsers] = useState([]);
+    const [products, setProducts] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
-    const [filteredUsers, setFilteredUsers] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState([]);
     const { isAuthenticated } = useAuth0();
     
-    const fetchProducts = async () => {
-        const productRes = await axios.get("http://localhost:8082/products");
-        return productRes.data;
-    };
-    
     useEffect(() => {
-        fetchProducts().then((data) => {
-            setUsers(data);
-            setFilteredUsers(data);
-        });
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get("http://localhost:8082/products");
+                setProducts(response.data);
+                setFilteredProducts(response.data);
+            } catch (error) {
+                console.error("Error fetching products:", error);
+                // Optionally, handle error state here
+            }
+        };
+
+        fetchProducts();
     }, []);
-    
-    const handleSearch = () => {
-        if (searchQuery.trim() !== "") {
-            const filtered = users.filter((user) =>
-              user.name.toLowerCase().includes(searchQuery.toLowerCase())
-            );
-            setFilteredUsers(filtered);
+
+    useEffect(() => {
+        if (searchQuery.trim() === "") {
+            setFilteredProducts(products);
         } else {
-            setFilteredUsers(users);
+            const filtered = products.filter((product) =>
+                product.name.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+            setFilteredProducts(filtered);
         }
-    };
+    }, [searchQuery, products]);
     
     return (
-      <div className="whole_back">
-      <div className="product-list-container">
-          {isAuthenticated && (
-            <>
-                <h2>Products</h2>
-                <div className="search-bar">
-                    <input type="text" value={searchQuery}
-                           onChange={(e) => setSearchQuery(e.target.value)}
-                           placeholder="Search products..." /> <button onClick={handleSearch}>Search</button>
-                </div>
-                {filteredUsers.length > 0 ? ( <ul className="product-list">
-                    {filteredUsers.map((user) => ( <li key={user.name}> <div className="product-item">
-                        <h3>{user.name}</h3> <p> Price: {user.price} Discount: {user.discount} | Description:{" "}
-                        {user.description} | Position: {user.position}</p> </div> </li> ))} </ul> ) :
-                  ( <p className="no-products">No products found.</p> )}
-            </>
-          )}
-          {!isAuthenticated && (
-            <div className="warning-container">
-                <WarningComponent />
+        <div className="whole_back">
+            <div className="product-list-container">
+                {isAuthenticated ? (
+                    <>
+                        <h2>Products</h2>
+                        <div className="search-bar">
+                            <input type="text" value={searchQuery}
+                                   onChange={(e) => setSearchQuery(e.target.value)}
+                                   placeholder="Search products..." />
+                        </div>
+                        {filteredProducts.length > 0 ? (
+                            <ul className="product-list">
+                                {filteredProducts.map((product) => (
+                                    <ProductItem key={product.id} product={product} />
+                                ))}
+                            </ul>
+                        ) : (
+                            <p className="no-products">No products found.</p>
+                        )}
+                    </>
+                ) : (
+                    <WarningComponent />
+                )}
             </div>
-          )}
-      </div>
-    </div>
+        </div>
     );
 };
 
