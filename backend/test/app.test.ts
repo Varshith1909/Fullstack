@@ -1,48 +1,47 @@
-import "chai/register-should.js";
+import { expect } from 'chai';
+import { test, teardown } from 'tap';
+import { faker } from '@faker-js/faker';
+import app from '../src/app.js';
 
-import { test, teardown } from "tap";
-import { faker } from "@faker-js/faker";
-import app from "../src/app.js";
-
+// Fucntion to close the Fastify server
 teardown(() => app.close());
 
-// Test case: Request the '/hello' route
-// test("Rerquest the /hello route", async () => {
-// 	// Sending a GET request to '/hello' route using 'app.inject'
-// 	const res = await app.inject({
-// 		method: "GET",
-// 		url: "/hello",
-// 	});
-//
-// 	res.statusCode.should.equals(200);
-// 	res.body.should.equal("Hello");
-// });
+// Test case for '/hello' route
+test('Request the /hello route', async () => {
+    const res = await app.inject({
+        method: 'GET',
+        url: '/hello',
+    });
 
-// Test case: List all users from '/dbTest'
-test("List all users from /dbTest", async () => {
-	// Sending a GET request to '/dbTest' route using 'app.inject'
-	const res = await app.inject({
-		method: "GET",
-		url: "/dbTest",
-	});
-
-	res.statusCode.should.equals(200);
+    expect(res.statusCode).to.equal(200);
+    expect(res.body).to.equal('Hello World'); 
 });
 
-test("Cerating a new user", async () => {
-	const payload = {
-		name: "testname",
-		email: faker.internet.email(),
-	};
+// Test case for list all users from '/dbTest'
+test('List all users from /dbTest', async () => {
+    const res = await app.inject({
+        method: 'GET',
+        url: '/dbTest',
+    });
 
-	const res = await app.inject({
-		method: "POST",
-		url: "/users",
-		payload,
-	});
+    expect(res.statusCode).to.equal(200); 
+    
+});
 
-	res.statusCode.should.equal(200);
-	res.payload.should.not.equal(payload);
-	const resPayload = res.json();
-	resPayload.email.should.equal(payload.email);
+// Test case for Creating a new user
+test('Creating a new user', async () => {
+    const payload = {
+        name: 'testname',
+        email: faker.internet.email(),
+    };
+
+    const res = await app.inject({
+        method: 'POST',
+        url: '/users',
+        payload,
+    });
+
+    expect(res.statusCode).to.equal(201); 
+    const resPayload = JSON.parse(res.payload);
+    expect(resPayload.email).to.equal(payload.email); 
 });
