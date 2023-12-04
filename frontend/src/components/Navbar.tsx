@@ -32,15 +32,15 @@ export function NavBar() {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            <li><a><Link to="/" className="text-lg ">Home</Link></a></li>
+            <li><a><Link to="/" className="text-lg bg-transparent">Home</Link></a></li>
             <li>
               <a>
-                <Link to="/api/product" className="text-lg ">Products</Link>
+                <Link to="/api/product" className="text-lg bg-transparent">Products</Link>
               </a>
             </li>
-            <li><a><Link to="/products" className="text-lg ">Search</Link></a></li>
-            <li><a><Link to="/sales" className="text-lg ">Sales</Link> </a></li>
-            <li><a><Link to="/suppliers" className="text-lg ">Suppliers</Link> </a></li>
+            <li><a><Link to="/products" className="text-lg bg-transparent">Search</Link></a></li>
+            <li><a><Link to="/sales" className="text-lg bg-transparent">Sales</Link> </a></li>
+            <li><a><Link to="/suppliers" className="text-lg bg-transparent">Suppliers</Link> </a></li>
           </ul>
         </div>
         <div className="navbar-end">
