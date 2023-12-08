@@ -1,7 +1,8 @@
-import WarningComponent from "@/components/Warnn.tsx";
-import { useAuth0 } from "@auth0/auth0-react";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import SalesList from "./SalesList";  // Assume this is your new component
+import WarningComponent from "@/components/Warnn";
+import { useAuth0 } from "@auth0/auth0-react";
 import "@/assets/css/Sales.css";
 
 const Sales = () => {
@@ -9,41 +10,27 @@ const Sales = () => {
     const { isAuthenticated } = useAuth0();
     
     useEffect(() => {
-        fetchSales();
+        fetchSalesData();
     }, []);
     
-    const fetchSales = async () => {
+    const fetchSalesData = async () => {
         try {
             const response = await axios.get("http://localhost:8082/sales");
             setSales(response.data);
         } catch (error) {
             console.error("Failed to fetch sales:", error);
+            // Optionally, handle error state here
         }
     };
-    
+
     return (
-      <div className="whole_back">
-          {isAuthenticated && (
-            <div className="sales-list">
-                <h2>Sales</h2>
-                <ul>
-                    {sales.map((sale) => (
-                      <li key={sale.id}>
-                          <h3>{sale.product.name}</h3>
-                          <p>Quantity: {sale.quantity}</p>
-                          <p>Total Price: {sale.total_price}</p>
-                      </li>
-                    ))}
-                    {sales.length === 0 && <p className="no-sales">No sales available</p>}
-                </ul>
-            </div>
-          )}
-          {!isAuthenticated && (
-            <div className="product-list-container">
+        <div className="whole_back">
+            {isAuthenticated ? (
+                <SalesList sales={sales} />
+            ) : (
                 <WarningComponent />
-            </div>
-          )}
-      </div>
+            )}
+        </div>
     );
 };
 
